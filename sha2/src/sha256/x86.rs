@@ -102,11 +102,11 @@ cpufeatures::new!(shani_cpuid, "sha", "sse2", "ssse3", "sse4.1");
 pub fn compress(state: &mut [u32; 8], blocks: &[[u8; 64]]) {
     // TODO: Replace with https://github.com/rust-lang/rfcs/pull/2725
     // after stabilization
-    if shani_cpuid::get() {
-        unsafe {
-            digest_blocks(state, blocks);
-        }
-    } else {
-        super::soft::compress(state, blocks);
+    //if shani_cpuid::get() {
+    unsafe {
+        digest_blocks(state, blocks);
     }
+    //} else {
+    //    super::soft::compress(state, blocks);
+    //}
 }
